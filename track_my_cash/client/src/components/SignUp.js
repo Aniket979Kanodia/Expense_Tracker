@@ -41,16 +41,28 @@ const SignUp = () => {
 		}
 	};
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		axios
-			.post("http://localhost:5000/auth/signUp", user)
-			.then((res) => {
-				alert(res.data);
-				navigate("/");
-			})
-			.catch((err) => {
-				alert("Email Already in use");
-			});
+		if (
+			user.Fname !== "" &&
+			user.Lname !== "" &&
+			user.DOB !== "" &&
+			user.Phone_Num.length === 10 &&
+			user.email !== "" &&
+			user.password !== "" &&
+			user.Cpassword !== ""
+		) {
+			e.preventDefault();
+			axios
+				.post("http://localhost:5000/auth/signUp", user)
+				.then((res) => {
+					alert(res.data);
+					navigate("/");
+				})
+				.catch((err) => {
+					alert("Email Already in use");
+				});
+		} else {
+			alert("Invalid Inputs");
+		}
 	};
 	return (
 		<React.Fragment>
