@@ -13,6 +13,8 @@ import React, { useState } from "react";
 import GroupList from "./components/Group_List";
 import Cookies from "universal-cookie";
 import IndividualDashBoard from "./components/Individual_Dashboard";
+import Group_Report from "./components/Group_Report";
+
 const cookies = new Cookies();
 //import Select_Path from "./components/Select_Path";
 
@@ -50,6 +52,7 @@ function App() {
 				/>
 				<Route exact path="/Select" element={<Select_Path />} />
 				<Route exact path="/Evaluate/:id" element={<Evaluation />} />
+				<Route exact path="/Report/:id" element={<Group_Report />} />
 			</Routes>
 		</>
 	);

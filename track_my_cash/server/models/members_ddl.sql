@@ -77,6 +77,7 @@ INSERT INTO Group_Expense(Group_id, Paid_by_mem_id,Added_by_mem_id,Amount,Remark
 INSERT INTO Group_Expense(Group_id, Paid_by_mem_id,Added_by_mem_id,Amount,Remarks,Date) VALUES(3,2,1,100,'TP','2022-10-24');
 
 SELECT SUM(Amount) from Group_Expense WHERE Group_id=1;
+SELECT Mem_id, SUM(Share_Amount), Group_id from shares group by(Group_id);
 create table shares(
     Expense_id bigserial,
     Group_id bigserial,

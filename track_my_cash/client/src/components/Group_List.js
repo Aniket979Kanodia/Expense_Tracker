@@ -65,6 +65,7 @@ const GroupList = ({ User }) => {
 						</div>
 					</div>
 				</div>
+				<button onClick={() => navigate("/Report/" + cookies.get("Member").mem_id)}>Report</button>
 				<button onClick={handleSubmit}>Log Out</button>
 			</div>
 		</React.Fragment>

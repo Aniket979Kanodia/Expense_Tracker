@@ -112,3 +112,15 @@ export const allgroupexpenses = async(req,res)=>{
 		console.log(err);
 	}
 }
+
+export const getDues = async(req,res)=>{
+	let id = req.params.id;
+	try{
+		const result  = await client.query(
+			"SELECT Shares.Mem_id, SUM(Share_Amount), Shares.Group_id, belongs_to.amount_due, groups.name from shares JOIN belongs_to ON Shares.Mem_id = Belongs_to.Mem_id AND Shares.group_id = Belongs_to.group_id JOIN groups ON Shares.Group_id= Groups.Group_id WHERE shares.Mem_id=$1 group by(Belongs_to.amount_due,Shares.Mem_id,Shares.Group_id,Groups.name);",[id]
+		);
+		res.send(result.rows);
+	}catch(err){
+		console.log(err);
+	}
+}
