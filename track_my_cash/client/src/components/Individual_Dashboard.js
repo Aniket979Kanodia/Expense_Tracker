@@ -11,8 +11,8 @@ import Cookies from "universal-cookie";
 import Update_salary from "./update_salary";
 import Add_Individual_expense from "./Add_Individual_expense";
 import Individual_card from "./Individual_card";
-import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import Pie_individual from "./Pie_individual";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const cookies = new Cookies();
@@ -25,6 +25,29 @@ const IndividualDashBoard = () => {
 	const [salary, setsalary] = useState(member.salary);
 	const [types, settypes] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
+	const [sector_name,set_sector_name] = useState([]);
+	const [sector_amount,set_sector_amount] = useState([]);
+	const [groups_name,set_groups_name]  = useState([]);
+	const [groups_amount,set_groups_amount]  = useState([]);
+	
+	const fetchgroupDues= async (e) => {
+		await axios
+			.get("http://localhost:5000/member/allgroupexpenses/" + Mem_Id)
+			.then((res) => {
+				const response = res.data;
+				const t1=[];
+				const t2=[];
+				for(var i=0;i<response.length;i++)
+				{
+					t1.push(response[i].name);
+					t2.push(response[i].amount_due);
+				}
+				set_groups_name(t1);
+				set_groups_amount(t2);
+				console.log(t2);
+			});
+	};
+
 	const fetchMember = async (e) => {
 		await axios
 			.get("http://localhost:5000/member/id/" + Mem_Id)
@@ -38,32 +61,28 @@ const IndividualDashBoard = () => {
 			settypes(res.data);
 		});
 	};
-	const data = {
-		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-		datasets: [
-		  {
-			label: '# of Votes',
-			data: [12, 19, 3, 5, 2, 3],
-			backgroundColor: [
-			  'rgba(255, 99, 132, 0.2)',
-			  'rgba(54, 162, 235, 0.2)',
-			  'rgba(255, 206, 86, 0.2)',
-			  'rgba(75, 192, 192, 0.2)',
-			  'rgba(153, 102, 255, 0.2)',
-			  'rgba(255, 159, 64, 0.2)',
-			],
-			borderColor: [
-			  'rgba(255, 99, 132, 1)',
-			  'rgba(54, 162, 235, 1)',
-			  'rgba(255, 206, 86, 1)',
-			  'rgba(75, 192, 192, 1)',
-			  'rgba(153, 102, 255, 1)',
-			  'rgba(255, 159, 64, 1)',
-			],
-			borderWidth: 1,
-		  },
-		],
-	  };
+
+	const updatesector_wise = ()=>{
+
+		const temp={};
+		for(var i=0;i<types.length;i++)
+		{
+			const key=types[i].type;
+			temp[key]=0;
+		}
+
+		for(var i=0;i<membersExpenses.length;i++)
+		{
+			const ele_type=membersExpenses[i].type;
+			const ele_amount=membersExpenses[i].amount;
+			temp[ele_type]=temp[ele_type]+parseInt(ele_amount);
+		}
+		
+		set_sector_name(Object.keys(temp));
+		set_sector_amount(Object.values(temp));
+	};
+	
+	
 	const fetchexpenses = async () => {
 		await axios
 			.get("http://localhost:5000/member/expenses/" + Mem_Id)
@@ -71,6 +90,7 @@ const IndividualDashBoard = () => {
 				setmembersExpenses(res.data);
 			});
 	};
+	
 
 	const settotexpense = () => {
 		let temp = 0;
@@ -83,8 +103,14 @@ const IndividualDashBoard = () => {
 		fetchTypes();
 		fetchMember();
 		fetchexpenses();
-		settotexpense();
+		fetchgroupDues();
 	}, []);
+
+	useEffect(() => {
+		settotexpense();
+		updatesector_wise();
+	},[membersExpenses]);
+
 	return (
 		<React.Fragment>
 			<div>
@@ -158,7 +184,9 @@ const IndividualDashBoard = () => {
 							/>
 						))}
 					</div>
-					<Doughnut data={data} />
+					<Pie_individual  heading="SectorWise" iid={847} labels={sector_name} values={sector_amount}/>
+					<Pie_individual  heading="GroupWise" iid={454} labels={groups_name} values={groups_amount}/>
+					
 					<button
 						onClick={() => {
 							modalOpen

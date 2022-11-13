@@ -99,3 +99,16 @@ export const addExpense = async (req, res) => {
 	}
 	res.status(200).send("done");
 };
+
+export const allgroupexpenses = async(req,res)=>{
+
+	let id = req.params.id;
+	try{
+		const result=await client.query(
+			"select groups.name,Belongs_To.amount_due from Belongs_To inner join groups on groups.group_id=Belongs_To.group_id where Belongs_To.Mem_id=$1 and Belongs_To.amount_due>0 and Belongs_To.amount_due!='NaN';",[id]
+		);
+		res.send(result.rows);
+	}catch(err){
+		console.log(err);
+	}
+}
