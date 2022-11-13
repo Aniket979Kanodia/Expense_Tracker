@@ -191,3 +191,28 @@ export const getShareAmount = async (req, res) => {
 		console.log(err);
 	}
 };
+
+export const settleExp = async (req, res) => {
+	let group_id = req.params.id;
+	let obj = req.body;
+	console.log(1111, obj);
+	let result;
+	try {
+		result = await client.query(
+			"Select * from belongs_to where group_id=$1 and (mem_id=$2 or mem_id=$3)",
+			[group_id, obj.Mem_id1, obj.Mem_id2]
+		);
+		console.log(1);
+		await client.query(
+			"update belongs_to set amount_due=amount_due-$3 where group_id=$1 and (mem_id=$2) ",
+			[group_id, obj.Mem_id1, parseFloat(obj.val)]
+		);
+		await client.query(
+			"update belongs_to set amount_due=amount_due+$3 where group_id=$1 and (mem_id=$2) ",
+			[group_id, obj.Mem_id2, parseFloat(obj.val)]
+		);
+		res.send("done");
+	} catch (err) {
+		console.log(err);
+	}
+};

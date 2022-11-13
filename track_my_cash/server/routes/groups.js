@@ -4,17 +4,16 @@ import {
 	getGroups,
 	getMembers,
 	showExpenses,
-
 	getShareAmount,
 	getTotalAmount,
-
 	addGroup,
 	addMember,
-
+	settleExp,
 } from "../controllers/Groups.controller.js";
 
 const router = express.Router();
 
+router.post("/settle/:id", settleExp);
 router.post("/addMem", addMember);
 router.post("/add", addGroup);
 router.post("/", getGroups);

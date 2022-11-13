@@ -1,9 +1,13 @@
 import React from "react";
 import axios from "axios";
-import twclient from "./twilio.cjs";
-function alert(content) {
+import twclient from "./twilio.cjs";import { useParams } from "react-router-dom";
+function alert(content)  {
 	console.log(content);
-	//const message = "You have amount due of rupees " + content.val + " INR to " + content.Name1;
+	const message =
+		"You have amount due of rupees " +
+		content.val +
+		"INR to " +
+		content.Name1;
 	const fetchContact = async (e) => {
 		console.log(content);
 		await axios
@@ -26,7 +30,20 @@ function alert(content) {
 	}
 	fetchContact();
 }
+
 const Split_Card = ({ content }) => {
+	const group_id = useParams().id;
+	const settle = (obj) => {
+		async function SettleExp(obj) {
+			await axios
+				.post("http://localhost:5000/groups/settle/" + group_id, obj)
+				.then((res) => {
+					console.log(res.data);
+					window.location.reload();
+				});
+		}
+		SettleExp(obj);
+	};
 	return (
 		<div className="row">
 			<div className="col-md-12">
@@ -43,9 +60,13 @@ const Split_Card = ({ content }) => {
 								{" "}
 								Should pay to {content.Name1}
 							</div>
-							<div className="col-md-2 d-flex justify-content-end">
-								<button onClick={() => (alert(content))}>Alert</button>
-								<button>Settled</button>
+							<div className="col-md-2 d-flex justify-content-between">
+								<button onClick={() => alert(content)}>
+									Alert
+								</button>
+								<button onClick={() => settle(content)}>
+									Settled
+								</button>
 							</div>
 							{/* <div className="col-md-2 d-flex justify-content-end">31 Jan,2021</div> */}
 						</div>
