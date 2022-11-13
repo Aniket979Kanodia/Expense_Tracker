@@ -100,27 +100,41 @@ export const addExpense = async (req, res) => {
 	res.status(200).send("done");
 };
 
-export const allgroupexpenses = async(req,res)=>{
-
+export const allgroupexpenses = async (req, res) => {
 	let id = req.params.id;
-	try{
-		const result=await client.query(
-			"select groups.name,Belongs_To.amount_due from Belongs_To inner join groups on groups.group_id=Belongs_To.group_id where Belongs_To.Mem_id=$1 and Belongs_To.amount_due>0 and Belongs_To.amount_due!='NaN';",[id]
+	try {
+		const result = await client.query(
+			"select groups.name,Sum(Shares.Share_amount) from Shares join groups on groups.group_id=Shares.group_id where Shares.Mem_id=$1 group by (Shares.group_id,groups.name);",
+			[id]
 		);
 		res.send(result.rows);
-	}catch(err){
+	} catch (err) {
 		console.log(err);
 	}
-}
+};
 
-export const getDues = async(req,res)=>{
+export const getDues = async (req, res) => {
 	let id = req.params.id;
-	try{
-		const result  = await client.query(
-			"SELECT Shares.Mem_id, SUM(Share_Amount), Shares.Group_id, belongs_to.amount_due, groups.name from shares JOIN belongs_to ON Shares.Mem_id = Belongs_to.Mem_id AND Shares.group_id = Belongs_to.group_id JOIN groups ON Shares.Group_id= Groups.Group_id WHERE shares.Mem_id=$1 group by(Belongs_to.amount_due,Shares.Mem_id,Shares.Group_id,Groups.name);",[id]
+	try {
+		const result = await client.query(
+			"SELECT Shares.Mem_id, SUM(Share_Amount), Shares.Group_id, belongs_to.amount_due, groups.name from shares JOIN belongs_to ON Shares.Mem_id = Belongs_to.Mem_id AND Shares.group_id = Belongs_to.group_id JOIN groups ON Shares.Group_id= Groups.Group_id WHERE shares.Mem_id=$1 group by(Belongs_to.amount_due,Shares.Mem_id,Shares.Group_id,Groups.name);",
+			[id]
 		);
 		res.send(result.rows);
-	}catch(err){
+	} catch (err) {
 		console.log(err);
 	}
-}
+};
+
+// export const allgroupexpenses = async (req, res) => {
+// 	let id = req.params.id;
+// 	try {
+// 		const result = await client.query(
+// 			"SELECT  SUM(Share_Amount),Groups.name from shares join groups on shares.group_id=groups.group_id where shares.mem_id=$1 group by(Shares.Group_id,Groups.name);",
+// 			[id]
+// 		);
+// 		res.send(result.rows[0]);
+// 	} catch (err) {
+// 		console.log(err);
+// 	}
+// };
