@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
-import twclient from "./twilio.cjs";import { useParams } from "react-router-dom";
-function alert(content)  {
+import twclient from "./twilio.cjs";
+import { useParams } from "react-router-dom";
+import Cookies from "universal-cookie";
+function alert(content) {
 	console.log(content);
 	const message =
 		"You have amount due of rupees " +
@@ -11,27 +13,31 @@ function alert(content)  {
 	const fetchContact = async (e) => {
 		console.log(content);
 		await axios
-			.post("http://localhost:5000/member/contact/", { mem_id: content.Mem_id1 })
+			.post("http://localhost:5000/member/contact/", {
+				mem_id: content.Mem_id1,
+			})
 			.then((res) => {
 				console.log(res.data);
 				console.log(twclient);
 
-
 				twclient.messages
 					.create({
-						body: 'Hello',
-						messagingServiceSid: 'MGd5e7845010b108d1605feb14082f12e1',
-						from: '+18655357463',
-						to: '+919752438758'
+						body: "Hello",
+						messagingServiceSid:
+							"MGd5e7845010b108d1605feb14082f12e1",
+						from: "+18655357463",
+						to: "+919752438758",
 					})
-					.then(message => console.log(message.sid))
+					.then((message) => console.log(message.sid))
 					.done();
 			});
-	}
+	};
 	fetchContact();
 }
 
 const Split_Card = ({ content }) => {
+	const cookies = new Cookies();
+	const Mem_Id = cookies.get("Member").mem_id;
 	const group_id = useParams().id;
 	const settle = (obj) => {
 		async function SettleExp(obj) {
@@ -60,14 +66,17 @@ const Split_Card = ({ content }) => {
 								{" "}
 								Should pay to {content.Name1}
 							</div>
-							<div className="col-md-2 d-flex justify-content-between">
-								<button onClick={() => alert(content)}>
-									Alert
-								</button>
-								<button onClick={() => settle(content)}>
-									Settled
-								</button>
-							</div>
+							{console.log(Mem_Id, content.Mem_id1)}
+							{Mem_Id == content.Mem_id1 && (
+								<div className="col-md-2 d-flex justify-content-between">
+									<button onClick={() => alert(content)}>
+										Alert
+									</button>
+									<button onClick={() => settle(content)}>
+										Settled
+									</button>
+								</div>
+							)}
 							{/* <div className="col-md-2 d-flex justify-content-end">31 Jan,2021</div> */}
 						</div>
 					</div>

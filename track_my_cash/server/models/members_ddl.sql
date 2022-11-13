@@ -10,7 +10,7 @@ create table Member(
     Password varchar(20),
     primary key (Mem_id)
 );
-INSERT INTO Member(Fname, Lname, DOB, Salary, Phone_Num, Email, Password) VALUES('Hussain', 'Diwan', '2001-11-11',2200000,'876654152', 'hd@gmail.com','123456');
+    INSERT INTO Member(Fname, Lname, DOB, Salary, Phone_Num, Email, Password) VALUES('Hussain', 'Diwan', '2001-11-11',2200000,'1234567890', 'hd@gmail.com','123456');
 Select * from member;
 
 

@@ -1,7 +1,7 @@
 import pg from "pg";
 
 var conString =
-	"postgres://zstsryjp:nBWr5W5S0HMoq34lHHl0z5FYnDPQAyLc@satao.db.elephantsql.com/zstsryjp";
+	"postgres://izchcpbe:1t20hJ5IFdm_kmkJ1KAc3sf0oOBcDZLp@satao.db.elephantsql.com/izchcpbe";
 var client = new pg.Client(conString);
 client.connect(function (err) {
 	if (err) {

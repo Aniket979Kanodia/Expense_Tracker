@@ -22,19 +22,23 @@ const Login = ({ setLoginUser }) => {
 		password: "",
 	});
 	const handleSubmit = async (e) => {
-		e.preventDefault();
-		// console.log(user);
-		await axios
-			.post("http://localhost:5000/auth/login", user)
-			.then((res) => {
-				alert("You are now Logged in.");
-				user.mem_id = res.data;
-				cookies.set("Member", user, { path: "/" });
-				navigate("/Select");
-			})
-			.catch((err) => {
-				alert("Incorrect Email or Password ");
-			});
+		if (user.email !== "" && user.password !== "") {
+			e.preventDefault();
+			// console.log(user);
+			await axios
+				.post("http://localhost:5000/auth/login", user)
+				.then((res) => {
+					alert("You are now Logged in.");
+					user.mem_id = res.data;
+					cookies.set("Member", user, { path: "/" });
+					navigate("/Select");
+				})
+				.catch((err) => {
+					alert("Incorrect Email or Password ");
+				});
+		} else {
+			alert("Invalid input for email or password");
+		}
 	};
 	const handleChange = (e) => {
 		const { name, value } = e.target;
