@@ -11,7 +11,7 @@ import Cookies from "universal-cookie";
 import Update_salary from "./update_salary";
 import Add_Individual_expense from "./Add_Individual_expense";
 import Individual_card from "./Individual_card";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Pie_individual from "./Pie_individual";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,22 +25,22 @@ const IndividualDashBoard = () => {
 	const [salary, setsalary] = useState(member.salary);
 	const [types, settypes] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [sector_name,set_sector_name] = useState([]);
-	const [sector_amount,set_sector_amount] = useState([]);
-	const [groups_name,set_groups_name]  = useState([]);
-	const [groups_amount,set_groups_amount]  = useState([]);
-	
-	const fetchgroupDues= async (e) => {
+	const [sector_name, set_sector_name] = useState([]);
+	const [sector_amount, set_sector_amount] = useState([]);
+	const [groups_name, set_groups_name] = useState([]);
+	const [groups_amount, set_groups_amount] = useState([]);
+
+	const fetchgroupDues = async (e) => {
 		await axios
 			.get("http://localhost:5000/member/allgroupexpenses/" + Mem_Id)
 			.then((res) => {
 				const response = res.data;
-				const t1=[];
-				const t2=[];
-				for(var i=0;i<response.length;i++)
-				{
+				console.log(response);
+				const t1 = [];
+				const t2 = [];
+				for (var i = 0; i < response.length; i++) {
 					t1.push(response[i].name);
-					t2.push(response[i].amount_due);
+					t2.push(response[i].sum);
 				}
 				set_groups_name(t1);
 				set_groups_amount(t2);
@@ -62,27 +62,23 @@ const IndividualDashBoard = () => {
 		});
 	};
 
-	const updatesector_wise = ()=>{
-
-		const temp={};
-		for(var i=0;i<types.length;i++)
-		{
-			const key=types[i].type;
-			temp[key]=0;
+	const updatesector_wise = () => {
+		const temp = {};
+		for (var i = 0; i < types.length; i++) {
+			const key = types[i].type;
+			temp[key] = 0;
 		}
 
-		for(var i=0;i<membersExpenses.length;i++)
-		{
-			const ele_type=membersExpenses[i].type;
-			const ele_amount=membersExpenses[i].amount;
-			temp[ele_type]=temp[ele_type]+parseInt(ele_amount);
+		for (var i = 0; i < membersExpenses.length; i++) {
+			const ele_type = membersExpenses[i].type;
+			const ele_amount = membersExpenses[i].amount;
+			temp[ele_type] = temp[ele_type] + parseInt(ele_amount);
 		}
-		
+
 		set_sector_name(Object.keys(temp));
 		set_sector_amount(Object.values(temp));
 	};
-	
-	
+
 	const fetchexpenses = async () => {
 		await axios
 			.get("http://localhost:5000/member/expenses/" + Mem_Id)
@@ -90,7 +86,6 @@ const IndividualDashBoard = () => {
 				setmembersExpenses(res.data);
 			});
 	};
-	
 
 	const settotexpense = () => {
 		let temp = 0;
@@ -109,7 +104,7 @@ const IndividualDashBoard = () => {
 	useEffect(() => {
 		settotexpense();
 		updatesector_wise();
-	},[membersExpenses]);
+	}, [membersExpenses]);
 
 	return (
 		<React.Fragment>
@@ -184,9 +179,19 @@ const IndividualDashBoard = () => {
 							/>
 						))}
 					</div>
-					<Pie_individual  heading="SectorWise" iid={847} labels={sector_name} values={sector_amount}/>
-					<Pie_individual  heading="GroupWise" iid={454} labels={groups_name} values={groups_amount}/>
-					
+					<Pie_individual
+						heading="SectorWise"
+						iid={847}
+						labels={sector_name}
+						values={sector_amount}
+					/>
+					<Pie_individual
+						heading="GroupWise"
+						iid={454}
+						labels={groups_name}
+						values={groups_amount}
+					/>
+
 					<button
 						onClick={() => {
 							modalOpen
