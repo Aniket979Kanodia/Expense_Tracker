@@ -37,6 +37,7 @@ export const addExpense = async (req, res) => {
 	let amount = parseFloat(req.body.amount);
 	let remarks = req.body.remarks;
 	let share_amount = amount / involved.length;
+	let gname;
 	try {
 		await client.query(
 			"INSERT INTO Group_Expense(Group_id, Paid_by_mem_id,Added_by_mem_id,Amount,Remarks,Date) VALUES($1,$2,$3,$4,$5,NOW())",
@@ -50,6 +51,11 @@ export const addExpense = async (req, res) => {
 			"update belongs_to SET amount_due = amount_due+ $1 WHERE Group_id= $2 AND Mem_id=$3",
 			[amount, group_id, paid_by]
 		);
+		gname = await client.query(
+			"Select name from groups where group_id=$1",
+			[group_id]
+		);
+		gname = gname.rows[0];
 		expense_id = expense_id.rows[0].max;
 		involved.forEach(async (member) => {
 			console.log(member);
@@ -60,6 +66,10 @@ export const addExpense = async (req, res) => {
 			await client.query(
 				"update belongs_to SET amount_due = amount_due- $1 WHERE Group_id= $2 AND Mem_id=$3",
 				[share_amount, group_id, member.mem_id]
+			);
+			await client.query(
+				"Insert into individual_expense(mem_id,amount,date,remarks,expense_type_id) vlaues ($1,$2,now(),$3,$4)",
+				[member.mem_id, share_amount, gname, 9]
 			);
 		});
 	} catch (err) {
