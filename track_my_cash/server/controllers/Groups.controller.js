@@ -68,8 +68,8 @@ export const addExpense = async (req, res) => {
 				[share_amount, group_id, member.mem_id]
 			);
 			await client.query(
-				"Insert into individual_expense(mem_id,amount,date,remarks,expense_type_id) vlaues ($1,$2,now(),$3,$4)",
-				[member.mem_id, share_amount, gname, 9]
+				"Insert into individual_expense(mem_id,amount,date,remarks,expense_type_id) values ($1,$2,now(),$3,$4)",
+				[member.mem_id, share_amount, gname.name, 9]
 			);
 		});
 	} catch (err) {
