@@ -24,10 +24,11 @@ function Select_Path() {
 	return (
 		<div>
 			<React.Fragment>
-				<div className="container mt-4">
+				<div className="page1">
+				<div className="container p-4">
 					<div className="row justify-content-around">
 						<div className="col-md-5 shadow p-3 mb-5 bg-white rounded text-center">
-							<GroupsIcon style={{ fontSize: 350 }} />
+							<PersonIcon style={{ fontSize: 350 }} />
 							<div className="display-4 header-text">
 								My Expenses
 							</div>
@@ -41,7 +42,7 @@ function Select_Path() {
 							</div>
 						</div>
 						<div className="col-md-5 shadow p-3 mb-5 bg-white rounded text-center">
-							<PersonIcon style={{ fontSize: 350 }} />
+							<GroupsIcon style={{ fontSize: 350 }} />
 							<div className="display-4 header-text">Groups</div>
 							<div className=" mt-5">
 								<button
@@ -53,6 +54,7 @@ function Select_Path() {
 							</div>
 						</div>
 					</div>
+				</div>
 				</div>
 			</React.Fragment>
 		</div>

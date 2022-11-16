@@ -1,4 +1,7 @@
-
+.page1{
+    background-image:repeating-linear-gradient(60deg,#bbacedc1,#faaca8de);
+    min-height: 100vh;
+}
 .child3{
 	/* justify-self: center; */
    margin: 0 auto;
@@ -33,3 +36,6 @@
 	margin-left: 2%;
 	padding-right: 2%;
 }  */
+.grpchart{
+	padding-left: 5%;
+}

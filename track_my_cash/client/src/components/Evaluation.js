@@ -6,6 +6,8 @@ import Share_Card from "./Share_Card";
 import Cookies from "universal-cookie";
 import { useParams } from "react-router-dom";
 import Split_Card from "./Split_Card";
+import "../componentsStyles/select_path.css";
+
 const cookies = new Cookies();
 
 let Expense_List = [];
@@ -146,7 +148,7 @@ function Evaluation() {
 	}, []);
 	return (
 		<React.Fragment>
-			<div>
+			<div className="page1">
 				<Sidebar />
 
 				<div className="container mt-4">

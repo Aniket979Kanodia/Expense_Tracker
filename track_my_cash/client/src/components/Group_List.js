@@ -44,7 +44,7 @@ const GroupList = ({ User }) => {
 
 	return (
 		<React.Fragment>
-			<div>
+			<div className="page1">
 				<Sidebar />
 				<FloatingSidebar
 					logo={{ flag: true }}

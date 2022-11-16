@@ -116,6 +116,7 @@ const IndividualDashBoard = () => {
 	return (
 		<React.Fragment>
 			<div>
+				<div className="page1">
 				<Sidebar />
 
 				{modalOpen && (
@@ -227,6 +228,7 @@ const IndividualDashBoard = () => {
 
 					{/* <button>Log Out</button> */}
 				</div>
+			</div>
 			</div>
 		</React.Fragment>
 	);

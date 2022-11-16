@@ -41,6 +41,7 @@ const GroupDashBoard = () => {
 	return (
 		<React.Fragment>
 			<div>
+				<div className="page1">
 				<Sidebar />
 				<FloatingSidebar
 					membersProps={mems}
@@ -64,7 +65,7 @@ const GroupDashBoard = () => {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div></div>
 		</React.Fragment>
 	);
 };

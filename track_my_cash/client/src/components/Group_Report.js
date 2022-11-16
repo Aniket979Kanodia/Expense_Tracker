@@ -4,6 +4,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { Navigate, useNavigate } from "react-router-dom";
 import Report_Card from "./report_card";
+import "../componentsStyles/select_path.css";
 
 const Group_Report = ()=>{
 
@@ -24,7 +25,7 @@ const Group_Report = ()=>{
         return (
     
             <React.Fragment>
-			<div>
+			<div className="page1">
 				<Sidebar />
 
 				
