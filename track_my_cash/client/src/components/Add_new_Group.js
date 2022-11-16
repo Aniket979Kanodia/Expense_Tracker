@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../componentsStyles/modal.css";
+import Button from "@mui/material/Button";
 
 import axios from "axios";
 import Cookies from "universal-cookie";
@@ -122,9 +123,13 @@ function Add_new_Group({ setOpenModal, state, setState }) {
 											/>
 											{memberList.length - 1 ===
 												index && (
-												<button onClick={addInputField}>
+												<Button variant ="contained"
+												type="button"
+												class="btn"
+												style ={{backgroundColor:"#cd817a",color:"white"}}
+												onClick={addInputField}>
 													Add Member
-												</button>
+												</Button>
 											)}
 										</div>
 									</div>

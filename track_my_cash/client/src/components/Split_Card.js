@@ -3,6 +3,8 @@ import axios from "axios";
 import twclient from "./twilio.cjs";
 import { useParams } from "react-router-dom";
 import Cookies from "universal-cookie";
+import Button from "@mui/material/Button";
+
 function alert(content) {
 	console.log(content);
 	const message =
@@ -69,12 +71,12 @@ const Split_Card = ({ content }) => {
 							{console.log(Mem_Id, content.Mem_id1)}
 							{Mem_Id == content.Mem_id1 && (
 								<div className="col-md-2 d-flex justify-content-between">
-									<button onClick={() => alert(content)}>
+									<Button variant ="text" onClick={() => alert(content)}>
 										Alert
-									</button>
-									<button onClick={() => settle(content)}>
+									</Button>
+									<Button variant ="text" onClick={() => settle(content)}>
 										Settled
-									</button>
+									</Button>
 								</div>
 							)}
 							{/* <div className="col-md-2 d-flex justify-content-end">31 Jan,2021</div> */}

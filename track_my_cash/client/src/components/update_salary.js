@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import Button from "@mui/material/Button";
 const iid = 2;
 
 export default function Update_salary(props) {
@@ -32,15 +33,23 @@ export default function Update_salary(props) {
 
 	return (
 		<>
-			<button
+			{/* <button
 				type="button"
-				class="btn btn-warning "
+				class="btn"
 				data-toggle="modal"
 				data-target={`#id${iid}`}
+				sx ={{color :"#111"}}
 			>
 				Update Salary
-			</button>
-
+			</button> */}
+			<Button variant ="contained"
+					type="button"
+					class="btn"
+					style ={{backgroundColor:"#cd817a",color:"white"}}
+					data-toggle="modal"
+					data-target={`#id${iid}`}>
+						Update Salary
+					</Button>
 			<div class="modal" id={`id${iid}`}>
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -68,15 +77,17 @@ export default function Update_salary(props) {
 						<div class="modal-footer">
 							<button
 								type="button"
-								class="btn btn-warning"
+								class="btn "
 								onClick={handleclick}
+								style ={{backgroundColor:"cornflowerblue",color:"white"}}
 								data-dismiss="modal"
 							>
 								Update
 							</button>
 							<button
 								type="button"
-								class="btn btn-danger"
+								class="btn "
+								style ={{backgroundColor:"crimson",color:"white"}}
 								data-dismiss="modal"
 							>
 								Close

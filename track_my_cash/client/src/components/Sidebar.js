@@ -7,6 +7,8 @@ import { IconContext } from "react-icons";
 import "../componentsStyles/SideBar.css";
 import { Navigate,useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import Button from "@mui/material/Button";
+
 function Sidebar() {
 	const cookies = new Cookies();
 	const handleSubmit = async (e) => {
@@ -71,12 +73,16 @@ function Sidebar() {
 							</ul>
 							
 								
-								<button
-									className="btn btn-outline-success"
+								<Button
+								variant ="contained"
+								type="button"
+									className="btn "
+									style ={{backgroundColor:"#cd817a",color:"white",borderRadius:"5%"}}
+
 									onClick={handleSubmit}
 								>
 									Log Out
-								</button>
+								</Button>
 							
 						</div>
 					</div>

@@ -1,4 +1,13 @@
-.detail-card {
+
+.child3{
+	/* justify-self: center; */
+   margin: 0 auto;
+   text-align: center;
+   position: -webkit-sticky;
+   position: sticky;
+   bottom: 0;
+   }
+   .detail-card {
 	margin: 1rem;
 }
 .detail-head{
@@ -9,3 +18,18 @@
 	font-size: medium;
 	font-weight: 300;
 }
+.add-exp-btn{
+	display: flex;
+	justify-content: center;
+	position: -webkit-sticky;
+	position: sticky;
+	bottom: 0;
+}
+/* .parent{
+	display: flex;
+	/* /* justify-content: space-evenly;} */
+	
+/* .child1 .child2 .child3{
+	margin-left: 2%;
+	padding-right: 2%;
+}  */

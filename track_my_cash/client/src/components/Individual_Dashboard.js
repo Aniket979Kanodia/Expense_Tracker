@@ -13,6 +13,12 @@ import Add_Individual_expense from "./Add_Individual_expense";
 import Individual_card from "./Individual_card";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Pie_individual from "./Pie_individual";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import AddIcon from "@mui/icons-material/Add";
+import { Fab } from "@mui/material";
+
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const cookies = new Cookies();
@@ -106,6 +112,7 @@ const IndividualDashBoard = () => {
 		updatesector_wise();
 	}, [membersExpenses]);
 
+
 	return (
 		<React.Fragment>
 			<div>
@@ -179,6 +186,7 @@ const IndividualDashBoard = () => {
 							/>
 						))}
 					</div>
+
 					<Pie_individual
 						heading="SectorWise"
 						iid={847}
@@ -191,8 +199,15 @@ const IndividualDashBoard = () => {
 						labels={groups_name}
 						values={groups_amount}
 					/>
-
-					<button
+					{/* </div> */}
+					{/* </div> */}
+					<div className="child3">
+					<Button
+					variant ="contained"
+					type="button"
+					class="btn stick"
+					 
+					style ={{backgroundColor:"#cd817a",color:"white" }}
 						onClick={() => {
 							modalOpen
 								? setModalOpen(false)
@@ -200,8 +215,17 @@ const IndividualDashBoard = () => {
 						}}
 					>
 						Add Expense
-					</button>
-					<button>Log Out</button>
+					</Button>
+	  			</div>
+	  {/* <div>
+		<Button sx={{ backgroundColor: "black" }}>
+        <Fab sx={buttonStyle} aria-label="add">
+          <AddIcon />
+        </Fab>
+      </Button>
+	  </div> */}
+
+					{/* <button>Log Out</button> */}
 				</div>
 			</div>
 		</React.Fragment>

@@ -5,6 +5,7 @@ import "../componentsStyles/group_dashboard.css";
 import Group_Card from "./Group_Card";
 import groups from "./tempGroups";
 import axios from "axios";
+import Button from "@mui/material/Button";
 
 import Cookies from "universal-cookie";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -63,10 +64,15 @@ const GroupList = ({ User }) => {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div><Button variant ="contained"
+					type="button"
+					class="btn"
+					style ={{backgroundColor:"#cd817a",color:"white",margin:"10px"}}
+
+					 onClick={() => navigate("/Report/" + cookies.get("Member").mem_id)}>Report</Button>
 				</div>
-				<button onClick={() => navigate("/Report/" + cookies.get("Member").mem_id)}>Report</button>
-				<button onClick={handleSubmit}>Log Out</button>
+				
+				{/* <button onClick={handleSubmit}>Log Out</button> */}
 			</div>
 		</React.Fragment>
 	);

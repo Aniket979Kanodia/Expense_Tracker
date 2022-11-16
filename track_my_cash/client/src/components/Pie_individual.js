@@ -40,7 +40,8 @@ export default function Pie_individual(props) {
 		<>
 			<button
 				type="button"
-				class="btn btn-warning "
+				class="btn  "
+				style ={{backgroundColor:"#cd817a",color:"white"}}
 				data-toggle="modal"
 				data-target={`#id${iid}`}
 			>

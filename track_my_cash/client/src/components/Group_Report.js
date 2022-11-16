@@ -37,7 +37,7 @@ const Group_Report = ()=>{
 							<Report_Card content={ele}></Report_Card>
 						))}
 					</div>
-					<button>Log Out</button>
+					{/* <button>Log Out</button> */}
 				</div>
 			</div>
 		</React.Fragment>
