@@ -34,7 +34,7 @@ export const showExpenses = async (req, res) => {
 	let expenses = [];
 	try {
 		expenses = await client.query(
-			"select remarks,ET.type,amount,date from Individual_Expense as IE inner join expense_type as ET on IE.Expense_type_id=ET.Expense_type_id where IE.Mem_id=$1;",
+			"select remarks,ET.type,amount,to_char(date,'DD-Mon-yy') as date from Individual_Expense as IE inner join expense_type as ET on IE.Expense_type_id=ET.Expense_type_id where IE.Mem_id=$1;",
 			[mem_id]
 		);
 	} catch (err) {
