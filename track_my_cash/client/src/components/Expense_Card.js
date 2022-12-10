@@ -6,7 +6,7 @@ const Expense_Card = ({ content }) => {
 		<div className="card detail-card">
 			<div className="card-body">
 				<div className="row detail-head">
-					<div className="col-md-8 col-6"> {content.fname}</div>
+					<div className="col-md-10 col-6"> {content.fname}</div>
 					<div className="col-md-2 col-6 d-flex justify-content-end">
 						{content.amount} INR
 					</div>
