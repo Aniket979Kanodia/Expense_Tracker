@@ -4,7 +4,7 @@ import client from "./db.js";
 import pg from "pg";
 
 import signUpRoutes from "./routes/signUp.js";
-import groupRoutes from "./routes/groups.js";
+import groupRoutes from "./routes/groups.mjs";
 import individualRoutes from "./routes/individual.js";
 
 const app = express();

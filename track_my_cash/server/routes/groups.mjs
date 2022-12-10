@@ -11,8 +11,13 @@ import {
 	settleExp,
 } from "../controllers/Groups.controller.js";
 
-const router = express.Router();
+import {sendSMS} from "../controllers/Message.controller.cjs";
 
+
+// import pkg from "../controllers/Message.controller.cjs";
+// const {sendSMS} = pkg;
+const router = express.Router();
+router.post("/message",sendSMS);
 router.post("/settle/:id", settleExp);
 router.post("/addMem", addMember);
 router.post("/add", addGroup);
@@ -22,5 +27,6 @@ router.get("/amount/:id", getTotalAmount);
 router.get("/share/:id", getShareAmount);
 router.get("/:id", showExpenses);
 router.post("/:id", addExpense);
+
 
 export default router;

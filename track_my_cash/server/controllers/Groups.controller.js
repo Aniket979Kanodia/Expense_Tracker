@@ -192,7 +192,7 @@ export const getShareAmount = async (req, res) => {
 	let Share_amount;
 	try {
 		Share_amount = await client.query(
-			"SELECT belongs_to.Mem_id,amount_due,fname,lname from belongs_to JOIN Member ON belongs_to.Mem_id= Member.Mem_id WHERE Group_id=$1;",
+			"SELECT belongs_to.Mem_id,amount_due,fname,lname,Phone_Num from belongs_to JOIN Member ON belongs_to.Mem_id= Member.Mem_id WHERE Group_id=$1;",
 			[group_id]
 		);
 		console.log(Share_amount.rows);

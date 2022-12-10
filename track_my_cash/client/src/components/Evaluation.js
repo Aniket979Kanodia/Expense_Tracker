@@ -45,6 +45,7 @@ function Evaluation() {
 					fName: Share[i].fname,
 					lName: Share[i].lname,
 					cash: h,
+					Phone_Num: Share[i].phone_num,
 				});
 			} else if (h < 0) {
 				Giver.enq({
@@ -52,6 +53,8 @@ function Evaluation() {
 					fName: Share[i].fname,
 					lName: Share[i].lname,
 					cash: -h,
+					Phone_Num: Share[i].phone_num,
+
 				});
 			}
 		}
@@ -59,12 +62,18 @@ function Evaluation() {
 		while (Taker.size() !== 0 && Giver.size() !== 0) {
 			let diff = Taker.peek().cash - Giver.peek().cash;
 			console.log(Taker.size(), Giver.size());
+			console.log(Taker.peek());
+			console.log(Giver.peek());
 			let fName1 = Taker.peek().fName;
 			let lName1 = Taker.peek().lName;
 			let Mem_id1 = Taker.peek().Mem_id;
+			let Phone_Num1= Taker.peek().Phone_Num;
+
 			let fName2 = Giver.peek().fName;
 			let lName2 = Giver.peek().lName;
 			let Mem_id2 = Giver.peek().Mem_id;
+			let Phone_Num2= Giver.peek().Phone_Num;
+
 			let val1 = Taker.peek().cash;
 			let val2 = Giver.peek().cash;
 			Giver.deq();
@@ -76,6 +85,8 @@ function Evaluation() {
 					fName: fName2,
 					lName: lName2,
 					cash: -diff,
+					Phone_Num: Phone_Num2,
+
 				});
 				//let tem = "Person " + id2 + "--> Person " + id1 + " : " + val1;
 				let temp = {
@@ -83,6 +94,9 @@ function Evaluation() {
 					Name2: fName2 + " " + lName2,
 					Name1: fName1 + " " + lName1,
 					val: val1,
+					Phone_Num2: Phone_Num2,
+					Phone_Num1: Phone_Num1,
+
 				};
 				tempu.push(temp);
 			} else if (diff > 0) {
@@ -91,6 +105,8 @@ function Evaluation() {
 					fName: fName1,
 					lName: lName1,
 					cash: diff,
+					Phone_Num: Phone_Num1,
+
 				});
 				// let tem = "Person " + id2 + "--> Person " + id1 + " : " + val2;
 				let temp = {
@@ -99,6 +115,9 @@ function Evaluation() {
 					Mem_id1: Mem_id1,
 					Name1: fName1 + " " + lName1,
 					val: val2,
+					Phone_Num2: Phone_Num2,
+					Phone_Num1: Phone_Num1,
+
 				};
 
 				tempu.push(temp);
@@ -110,6 +129,9 @@ function Evaluation() {
 					Mem_id1: Mem_id1,
 					Name1: fName1 + " " + lName1,
 					val: val1,
+					Phone_Num2: Phone_Num2,
+					Phone_Num1: Phone_Num1,
+
 				};
 
 				tempu.push(temp);
@@ -160,11 +182,11 @@ function Evaluation() {
 									<div className="card detail-card">
 										<div className="card-body">
 											<div className="row detail-head">
-												<div className="col-md-10">
+												<div className="col-md-10 col-6">
 													{" "}
 													Total Expense
 												</div>
-												<div className="col-md-2 d-flex justify-content-end">
+												<div className="col-md-2 col-6 d-flex justify-content-end">
 													{Amount}
 												</div>
 											</div>
