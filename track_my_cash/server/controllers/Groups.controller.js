@@ -19,7 +19,7 @@ export const showExpenses = async (req, res) => {
 	let expenses = [];
 	try {
 		expenses = await client.query(
-			"Select  fname,remarks,amount,date from group_expense join member on paid_by_mem_id = mem_id where group_id=$1 order by date desc",
+			"Select  fname,remarks,amount,to_char(date,'DD-Mon-yy') as date from group_expense join member on paid_by_mem_id = mem_id where group_id=$1 order by date desc",
 			[group_id.id]
 		);
 	} catch (error) {
