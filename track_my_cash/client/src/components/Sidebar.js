@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SideBarItems";
 import { IconContext } from "react-icons";
 import "../componentsStyles/SideBar.css";
-import { Navigate,useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import Button from "@mui/material/Button";
 
@@ -36,54 +36,61 @@ function Sidebar() {
 								style={menubarstyle}
 							/>
 						</Link>
-						
-						<button
+
+						{/* <button
 							className="navbar-toggler"
 							type="button"
-							data-bs-toggle="collapse"
-							data-bs-target="#navbarSupportedContent"
-							aria-controls="navbarSupportedContent"
-							aria-expanded="false"
-							aria-label="Toggle navigation"
+							onClick={showSidebar}
 						>
 							<span className="navbar-toggler-icon"></span>
-						</button>
+						</button> */}
 						<div
 							className="collapse navbar-collapse"
 							id="navbarSupportedContent"
 						>
 							<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 								<li className="nav-item">
-
-						<a className="nav-link active" onClick={() => navigate("/Select")}> Home</a>
-									
+									<a
+										className="nav-link active"
+										onClick={() => navigate("/Select")}
+									>
+										{" "}
+										Home
+									</a>
 								</li>
 								<li className="nav-item">
-								<a className="nav-link active" onClick={() => navigate("/GroupList")}> Groups</a>
-
-
+									<a
+										className="nav-link active"
+										onClick={() => navigate("/GroupList")}
+									>
+										{" "}
+										Groups
+									</a>
 								</li>
 								<li className="nav-item">
-									
-								<a className="nav-link active" onClick={() => navigate("/Individual")}> Individual</a>
-
+									<a
+										className="nav-link active"
+										onClick={() => navigate("/Individual")}
+									>
+										{" "}
+										Individual
+									</a>
 								</li>
-								
-								
 							</ul>
-							
-								
-								<Button
-								variant ="contained"
-								type="button"
-									className="btn "
-									style ={{backgroundColor:"#cd817a",color:"white",borderRadius:"5%"}}
 
-									onClick={handleSubmit}
-								>
-									Log Out
-								</Button>
-							
+							<Button
+								variant="contained"
+								type="button"
+								className="btn "
+								style={{
+									backgroundColor: "#cd817a",
+									color: "white",
+									borderRadius: "5%",
+								}}
+								onClick={handleSubmit}
+							>
+								Log Out
+							</Button>
 						</div>
 					</div>
 				</nav>
@@ -108,6 +115,21 @@ function Sidebar() {
 								</li>
 							);
 						})}
+						<li className="nav-text">
+							<Button
+								variant="contained"
+								type="button"
+								className="btn "
+								style={{
+									backgroundColor: "white",
+									color: "#cd817a",
+									borderRadius: "5%",
+								}}
+								onClick={handleSubmit}
+							>
+								Log Out
+							</Button>
+						</li>
 					</ul>
 				</nav>
 			</IconContext.Provider>
