@@ -11,8 +11,8 @@ const Group_Card = ({ content }) => {
 		<div className="card detail-card">
 			<div className="card-body">
 				<div className="row detail-head">
-					<div className="col-md-10"> {content.name}</div>
-					<div className="col-md-2 d-flex justify-content-end">
+					<div className="col-md-10 col-6"> {content.name}</div>
+					<div className="col-md-2 col-6 d-flex justify-content-end">
 						By {content.owner_name}
 					</div>
 				</div>

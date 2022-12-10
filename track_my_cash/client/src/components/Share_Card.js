@@ -7,14 +7,14 @@ const Share_Card = ({ content }) => {
 				<div className="card detail-card">
 					<div className="card-body">
 						<div className="row detail-head">
-							<div className="col-md-10">
+							<div className="col-md-10 col-6">
 								{content.fname + " " + content.lname}
 							</div>
 							<div
 								className={
 									parseFloat(content.amount_due) >= 0
-										? "col-md-2 d-flex justify-content-end text-success"
-										: " col-md-2 d-flex justify-content-end text-danger"
+										? "col-md-2 col-6 d-flex justify-content-end text-success"
+										: " col-md-2 col-6 d-flex justify-content-end text-danger"
 								}
 							>
 								{content.amount_due > 0 ? "+" : ""}

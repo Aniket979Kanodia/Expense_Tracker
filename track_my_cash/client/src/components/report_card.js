@@ -6,8 +6,8 @@ const Report_Card = ({ content }) => {
 		<div className="card detail-card">
 			<div className="card-body">
 				<div className="row detail-head">
-					<div className="col-md-9"> {content.name}</div>
-					<div className="col-md-3 d-flex justify-content-end">
+					<div className="col-md-9 col-6"> {content.name}</div>
+					<div className="col-md-3 col-6 d-flex justify-content-end">
 						Expense: {content.sum} INR
 					</div>
 				</div>
