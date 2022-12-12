@@ -11,13 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-	cors({
-		origin: ["http://localhost:3000", "https://trackmycash.onrender.com"],
-		methods: ["POST", "PUT", "GET", "DELETE", "SHOW"],
-		credentials: [true],
-	})
-);
+// app.use(
+// 	cors({
+// 		origin: ["http://localhost:3000", "https://trackmycash.onrender.com"],
+// 		methods: ["POST", "PUT", "GET", "DELETE", "SHOW"],
+// 		credentials: [true],
+// 	})
+// );
 
 app.use("/auth", signUpRoutes);
 app.use("/groups", groupRoutes);
