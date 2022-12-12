@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
 	cors({
-		origin: ["http://localhost:3000", "http://localhost:5000"],
+		origin: ["http://localhost:3000", "https://trackmycash.onrender.com"],
 		methods: ["POST", "PUT", "GET", "DELETE", "SHOW"],
 		credentials: [true],
 	})
