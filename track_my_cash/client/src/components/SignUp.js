@@ -52,7 +52,7 @@ const SignUp = () => {
 		) {
 			e.preventDefault();
 			axios
-				.post("http://localhost:5000/auth/signUp", user)
+				.post("https://trackmycash.onrender.com/auth/signUp", user)
 				.then((res) => {
 					alert(res.data);
 					navigate("/");

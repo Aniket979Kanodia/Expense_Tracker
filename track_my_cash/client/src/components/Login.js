@@ -26,7 +26,7 @@ const Login = ({ setLoginUser }) => {
 			e.preventDefault();
 			// console.log(user);
 			await axios
-				.post("http://localhost:5000/auth/login", user)
+				.post("https://trackmycash.onrender.com/auth/login", user)
 				.then((res) => {
 					alert("You are now Logged in.");
 					user.mem_id = res.data;

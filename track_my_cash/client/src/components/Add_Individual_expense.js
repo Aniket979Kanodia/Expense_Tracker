@@ -30,7 +30,7 @@ function AddIndividualExpense({ setModalOpen, types }) {
 		setExpense({ ...Expense, date: getCurrentDate() });
 
 		console.log(Expense);
-		axios.post("http://localhost:5000/member/addExpense", Expense);
+		axios.post("https://trackmycash.onrender.com/member/addExpense", Expense);
 
 		setModalOpen(false);
 		window.location.reload();

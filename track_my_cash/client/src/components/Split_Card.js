@@ -22,7 +22,7 @@ function alert(content) {
 	const fetchContact = async (e) => {
 		//console.log(content);
 		await axios
-			.post("http://localhost:5000/groups/message/",(message))
+			.post("https://trackmycash.onrender.com/groups/message/",(message))
 			.then((res) => {
 				console.log(res.data);
 				//console.log(twclient.messages);
@@ -39,7 +39,7 @@ const Split_Card = ({ content }) => {
 	const settle = (obj) => {
 		async function SettleExp(obj) {
 			await axios
-				.post("http://localhost:5000/groups/settle/" + group_id, obj)
+				.post("https://trackmycash.onrender.com/groups/settle/" + group_id, obj)
 				.then((res) => {
 					console.log(res.data);
 					window.location.reload();

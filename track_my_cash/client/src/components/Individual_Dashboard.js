@@ -38,7 +38,7 @@ const IndividualDashBoard = () => {
 
 	const fetchgroupDues = async (e) => {
 		await axios
-			.get("http://localhost:5000/member/allgroupexpenses/" + Mem_Id)
+			.get("https://trackmycash.onrender.com/member/allgroupexpenses/" + Mem_Id)
 			.then((res) => {
 				const response = res.data;
 				console.log(response);
@@ -56,14 +56,14 @@ const IndividualDashBoard = () => {
 
 	const fetchMember = async (e) => {
 		await axios
-			.get("http://localhost:5000/member/id/" + Mem_Id)
+			.get("https://trackmycash.onrender.com/member/id/" + Mem_Id)
 			.then((res) => {
 				setMember(res.data);
 				setsalary(res.data.salary);
 			});
 	};
 	const fetchTypes = async (e) => {
-		await axios.get("http://localhost:5000/member/types").then((res) => {
+		await axios.get("https://trackmycash.onrender.com/member/types").then((res) => {
 			settypes(res.data);
 		});
 	};
@@ -87,7 +87,7 @@ const IndividualDashBoard = () => {
 
 	const fetchexpenses = async () => {
 		await axios
-			.get("http://localhost:5000/member/expenses/" + Mem_Id)
+			.get("https://trackmycash.onrender.com/member/expenses/" + Mem_Id)
 			.then((res) => {
 				setmembersExpenses(res.data);
 			});

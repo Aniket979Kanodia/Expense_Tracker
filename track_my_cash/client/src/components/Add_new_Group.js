@@ -64,7 +64,7 @@ function Add_new_Group({ setOpenModal, state, setState }) {
 				members: memberList,
 			};
 			console.log(json);
-			axios.post("http://localhost:5000/groups/add", json).then((res) => {
+			axios.post("https://trackmycash.onrender.com/groups/add", json).then((res) => {
 				console.log(res.data);
 			});
 

@@ -44,7 +44,7 @@ function Add_new_Mem({ setOpenModal, state, setState }) {
 		setgroup({ ...group });
 		console.log(group);
 
-		axios.post("http://localhost:5000/groups/addMem", group).then((res) => {
+		axios.post("https://trackmycash.onrender.com/groups/addMem", group).then((res) => {
 			if (res.data == "-1") {
 				alert("This group does not exist");
 			} else if (res.data == "-2") {

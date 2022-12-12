@@ -14,7 +14,7 @@ const Group_Report = ()=>{
 	const Mem_Id = cookies.get("Member").mem_id;
 	const fetchgroupDues= async (e) => {
         await axios
-			.get("http://localhost:5000/member/dues/" + Mem_Id)
+			.get("https://trackmycash.onrender.com/member/dues/" + Mem_Id)
 			.then((res) => {
                 console.log(res.data);
 				setExpenses(res.data);

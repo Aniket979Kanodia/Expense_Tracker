@@ -14,7 +14,7 @@ app.use(cors());
 
 // app.use(
 // 	cors({
-// 		origin: ["http://localhost:3000", "https://trackmycash.onrender.com"],
+// 		origin: ["https://trackmycash-zhjp.onrender.com", "https://trackmycash.onrender.com"],
 // 		methods: ["POST", "PUT", "GET", "DELETE", "SHOW"],
 // 		credentials: [true],
 // 	})

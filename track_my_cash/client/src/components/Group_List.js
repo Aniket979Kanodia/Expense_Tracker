@@ -33,7 +33,7 @@ const GroupList = ({ User }) => {
 	useEffect(() => {
 		const fetchGroups = async (e) => {
 			await axios
-				.post("http://localhost:5000/groups", cookies.get("Member"))
+				.post("https://trackmycash.onrender.com/groups", cookies.get("Member"))
 				.then((res) => {
 					setgroupsArr(res.data.rows);
 					console.log(groupsArr);

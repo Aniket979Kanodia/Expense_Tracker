@@ -21,7 +21,7 @@ const GroupDashBoard = () => {
 	useEffect(() => {
 		const fetchExpenses = async (e) => {
 			await axios
-				.get("http://localhost:5000/groups/" + group_id.id)
+				.get("https://trackmycash.onrender.com/groups/" + group_id.id)
 				.then((res) => {
 					setmembersArr(res.data);
 				});
@@ -30,7 +30,7 @@ const GroupDashBoard = () => {
 
 		const fetchMembers = async (e) => {
 			await axios
-				.get("http://localhost:5000/groups/members/" + group_id.id)
+				.get("https://trackmycash.onrender.com/groups/members/" + group_id.id)
 				.then((res) => {
 					setmems(res.data);
 				});

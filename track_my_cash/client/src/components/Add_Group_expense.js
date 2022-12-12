@@ -59,7 +59,7 @@ function Add_Group_expense({ membersProps, setOpenModal, state, setState }) {
 		let temp = membersArr.filter((member) => member.isChecked);
 		memberExpenses.involved = temp;
 		axios
-			.post("http://localhost:5000/groups/" + group_id, memberExpenses)
+			.post("https://trackmycash.onrender.com/groups/" + group_id, memberExpenses)
 			.then((res) => {
 				members = res.data;
 			});

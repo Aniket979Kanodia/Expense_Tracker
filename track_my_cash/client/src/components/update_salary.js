@@ -18,7 +18,7 @@ export default function Update_salary(props) {
 		props.setsalary(salary);
 		try {
 			axios
-				.post("http://localhost:5000/member/updatesalary", {
+				.post("https://trackmycash.onrender.com/member/updatesalary", {
 					user_id,
 					salary,
 				})

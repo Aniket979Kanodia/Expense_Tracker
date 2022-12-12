@@ -152,14 +152,14 @@ function Evaluation() {
 		console.log(group_id);
 		const fetchAmount = async (e) => {
 			await axios
-				.get("http://localhost:5000/groups/amount/" + group_id)
+				.get("https://trackmycash.onrender.com/groups/amount/" + group_id)
 				.then((res) => {
 					console.log(res.data);
 					setAmount(res.data.rows[0].sum);
 					console.log(Amount);
 				});
 			await axios
-				.get("http://localhost:5000/groups/share/" + group_id)
+				.get("https://trackmycash.onrender.com/groups/share/" + group_id)
 				.then((res) => {
 					//console.log(res.data);
 					setShare(res.data);
